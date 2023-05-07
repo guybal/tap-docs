@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: jenkins-creds
+  namespace: tap-install
+type: Opaque
+stringData:
+  url: JENKINS-URL
+  username: USERNAME
+  password: PASSWORD
+  ca-cert: PEM-CA-CERT

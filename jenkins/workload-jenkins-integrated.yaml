@@ -1,0 +1,24 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  labels:
+    app.kubernetes.io/part-of: test-workload
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+  name: my-workload
+  namespace: apps
+spec:
+  params:
+    - name: testing_pipeline_matching_labels
+      value:
+        apps.tanzu.vmware.com/pipeline: jenkins-pipeline
+    - name: testing_pipeline_params
+      value:
+        job-name: jenkins-job-name
+        job-params: '[{"name":"GIT_URL","value":"https://your.git/repository.git"}]'
+        secret-name: jenkins-creds
+  source:
+    git:
+      ref:
+        branch: main
+      url: ${SOURCE_REPO_URL}
