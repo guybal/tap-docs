@@ -1,0 +1,66 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: developer-testing-jenkins-tekton-pipeline
+  labels:
+    #! This label should be provided to the Workload so that
+    #! the supply chain can find this pipeline
+    apps.tanzu.vmware.com/pipeline: jenkins-pipeline
+spec:
+  results:
+    - name: jenkins-job-url   #! To show the job URL on the
+      #! Tanzu Application Platform GUI
+      value: $(tasks.jenkins-task.results.jenkins-job-url)
+  params:
+    - name: source-url        #! Required
+    - name: source-revision   #! Required
+    - name: secret-name       #! Required
+    - name: job-name          #! Required
+    - name: job-params        #! Required
+  tasks:
+    - name: unit-tests
+      params:
+        - name: source-url
+          value: $(params.source-url)
+        - name: source-revision
+          value: $(params.source-revision)
+      taskSpec:
+        params:
+          - name: source-url
+          - name: source-revision
+        steps:
+          - name: test
+            image: gradle
+            script: |-
+              cd `mktemp -d`
+              wget -qO- $(params.source-url) | tar xvz -m
+              pwd
+              MVNW=mvnw
+              GRADLE="build.gradle"
+              if [ -f "$MVNW" ]; then
+                  chmod +x mvnw
+                  ./mvnw test
+              elif [ -f "$GRADLE" ]; then
+                  gradle test --debug
+              else
+                  echo "WARNING: No tests were run. This workload is not built with one of the currently supported frameworks (maven or gradle). If using another language/framework, update the image and the script sections of the 'pipeline.tekton.dev/developer-defined-tekton-pipeline' resource in your namespace to match your language/framework."
+                  #exit 1
+              fi
+    #! Required: Include the built-in task that triggers the
+    #! given job in Jenkins
+    - name: jenkins-task
+      taskRef:
+        name: jenkins-task
+        kind: ClusterTask
+      params:
+        - name: source-url
+          value: $(params.source-url)
+        - name: source-revision
+          value: $(params.source-revision)
+        - name: secret-name
+          value: $(params.secret-name)
+        - name: job-name
+          value: $(params.job-name)
+        - name: job-params
+          value: $(params.job-params)
