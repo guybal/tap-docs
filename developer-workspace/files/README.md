@@ -64,7 +64,7 @@ spec:
 
 ---
 
-## `catalog-info.yaml`
+## 2. `catalog-info.yaml`
 
 In the `Tanzu Application Platform`, the `catalog-info.yaml` file is used to define the metadata associated with a given application or service. 
 
@@ -96,7 +96,7 @@ spec:
 
 ---
 
-## `Tiltfile`
+## 3. `Tiltfile`
 
 In the `Tanzu Application Platform`, a `Tiltfile` is a configuration file that is used by the `Tilt` tool to manage the local development environment for a given application or service. 
 
