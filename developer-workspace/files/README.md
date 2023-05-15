@@ -112,13 +112,13 @@ LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='${DEVELOPER_NAMESPACE}')
 
 k8s_custom_deploy(
-   'vessel-viewer',
+   '${MICROSERVICE_NAME}',
    apply_cmd="tanzu apps workload apply -f config/workload.yaml --live-update" +
        " --local-path " + LOCAL_PATH +
        " --source-image " + SOURCE_IMAGE +
        " --namespace " + NAMESPACE +
        " --yes >/dev/null" +
-       " && kubectl get workload vessel-viewer --namespace " + NAMESPACE + " -o yaml",
+       " && kubectl get workload ${MICROSERVICE_NAME} --namespace " + NAMESPACE + " -o yaml",
    delete_cmd="tanzu apps workload delete -f config/workload.yaml --namespace " + NAMESPACE + " --yes" ,
    deps=['pom.xml', './target/classes'],
    container_selector='workload',
@@ -127,7 +127,7 @@ k8s_custom_deploy(
    ]
 )
 
-k8s_resource('vessel-viewer', port_forwards=["${APP_PORT}:${APP_PORT}"],
+k8s_resource('${MICROSERVICE_NAME}', port_forwards=["${APP_PORT}:${APP_PORT}"],
    extra_pod_selectors=[{'carto.run/workload-name': '${MICROSERVICE_NAME}', 'app.kubernetes.io/component': 'run'}])
 
 allow_k8s_contexts('lan-nonprod-dev0')
