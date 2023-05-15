@@ -1,0 +1,27 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: ${MICROSERVICE_NAME}  #! TODO: CHANGE
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: ${MICROSERVICE_NAME}   #! TODO: CHANGE
+#!    apps.tanzu.vmware.com/auto-configure-actuators: "false"
+spec:
+  env:
+    #! Set Java tool options
+    - name: JAVA_TOOL_OPTIONS                 #! TODO: OPTIONAL CHANGE
+    #! Remove '-Dmanagement.server.port=8081 -Dserver.port=8081' if application port is 8080.
+    #! Remove '-Dmanagement.health.probes.enabled="false"' if application exposes health probes.
+      value: -Dmanagement.server.port=8081 -Dserver.port=8081 -Dmanagement.health.probes.enabled="false"
+    #! Set Spring active profile              #! TODO: OPTIONAL CHANGE
+    - name: SPRING_PROFILES_ACTIVE
+      value: qa0,disabledjobs
+    #! Additional environment variables       #! TODO: OPTIONAL CHANGE
+    #!- name: SERVER_PORT
+    #!  value: 8081
+  source:
+    git:
+      url: ${GIT_REPO_URL} #! TODO: CHANGE
+      #! For example: https://devops.corp.zim.com/bitbucket/scm/al/vessel-viewer.git
+      ref:
+        branch: master

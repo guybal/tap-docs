@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${MICROSERVICE_NAME}                  #! TODO: CHANGE
+  description: ${MICROSERVICE_DESCRIPTION}    #! TODO: CHANGE
+  tags:       #! TODO: OPTIONAL CHANGE
+    - tanzu
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=${MICROSERVICE_NAME}'    #! TODO: CHANGE
+spec:
+  type: service
+  lifecycle: experimental
+  owner: ${DEV_TEAM_NAME}                     #! TODO: CHANGE
