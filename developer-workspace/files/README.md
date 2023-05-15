@@ -5,10 +5,10 @@
   * [1. `workload.yaml`](#1-workloadyaml)
     * [1. Copy `config/workload.yaml` to source code repo](#1-copy-configworkloadyaml-to-source-code-repo)
     * [2. Change configuration](#2-change-configuration)
-  * [`catalog-info.yaml`](#catalog-infoyaml)
+  * [2. `catalog-info.yaml`](#2-catalog-infoyaml)
     * [1. Copy `catalog/catalog-info.yaml` to source code repo](#1-copy-catalogcatalog-infoyaml-to-source-code-repo)
     * [2. Change configuration](#2-change-configuration)
-  * [`Tiltfile`](#tiltfile)
+  * [3. `Tiltfile`](#3-tiltfile)
     * [1. Copy `Tiltfile` to source code repo](#1-copy-tiltfile-to-source-code-repo)
     * [2. Change configuration](#2-change-configuration)
 <!-- TOC -->
