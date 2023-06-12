@@ -63,9 +63,9 @@ Server: Docker Desktop
 ##### a. Fetch `.tar.gz`
 **Accept EULA** and download the CLI tar file under `tanzu-cli-tap`:
 - https://network.tanzu.vmware.com/products/tanzu-application-platform/
-![img.png](../images/tap-cli-download.png)
+![img.png](images/tap-cli-download.png)
 
-![img.png](../images/tap-cli-download-2.png)
+![img.png](images/tap-cli-download-2.png)
 
 Or use `pivnet` CLI:
 ```bash
@@ -282,7 +282,7 @@ For **TAP v1.5:**
   2. Open the `Preferences` pane and then go to `Plugins`.
   3. Click the gear (settings) icon and then click `Install Plugin from disk…`.
   4. Use the file picker to select the ZIP files downloaded from the VMware Tanzu Network.
-  ![img.png](../images/intelij-ide-plugin-installation.png)
+  ![img.png](images/intelij-ide-plugin-installation.png)
 
      
 - **VS Code**
@@ -294,12 +294,12 @@ For **TAP v1.5:**
      - Language Support for Java(™) by Red Hat: https://marketplace.visualstudio.com/items?itemName=redhat.java
      - YAML: https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
   5. Ensure Language Support for Java is running in Standard Mode. You can configure it in the `Settings` menu by going to `Code > Preferences > Settings` under `Java > Server: Launch Mode`.
-  ![img.png](../images/vscode-ide-plugin-installation.png)
+  ![img.png](images/vscode-ide-plugin-installation.png)
 
 
 - **Visual Studio**
   1. Double-click the .vsix install file and click through the prompts.
   2. Open Visual Studio and, from top menu, click `Extensions > Manage Extensions`.
   3. Verify that the extension is installed and that it is the version you want.
-  ![img.png](../images/vs-ide-plugin-installation.png)
+  ![img.png](images/vs-ide-plugin-installation.png)
 
