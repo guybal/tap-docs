@@ -1,0 +1,26 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: ${MICROSERVICE_NAME}                          #! TODO: CHANGE
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: ${MICROSERVICE_NAME}   #! TODO: CHANGE
+#!    apps.tanzu.vmware.com/auto-configure-actuators: "false"
+spec:
+  build:
+    env:
+      - name: BP_NODE_RUN_SCRIPTS
+        value: "build-tanzu"
+      - name: BP_WEB_SERVER_ROOT
+        value: "dist"
+      - name: BP_WEB_SERVER
+        value: "nginx"
+  env:
+  #! Additional environment variables               #! TODO: OPTIONAL CHANGE
+  #!- name: SERVER_PORT
+  #!  value: 8081
+  source:
+    git:
+      url: ${GIT_REPO_URL}                           #! TODO: CHANGE
+      ref:
+        branch: ${GIT_REPO_BRANCH}                   #! TODO: CHANGE
