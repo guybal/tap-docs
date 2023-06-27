@@ -42,6 +42,7 @@ metadata:
   name: ${MICROSERVICE_NAME}                          #! TODO: CHANGE
   labels:
     apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
     app.kubernetes.io/part-of: ${MICROSERVICE_NAME}   #! TODO: CHANGE
 #!    apps.tanzu.vmware.com/auto-configure-actuators: "false"
 spec:
@@ -78,6 +79,7 @@ metadata:
   name: ${MICROSERVICE_NAME}                          #! TODO: CHANGE
   labels:
     apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
     app.kubernetes.io/part-of: ${MICROSERVICE_NAME}   #! TODO: CHANGE
 #!    apps.tanzu.vmware.com/auto-configure-actuators: "false"
 spec:
@@ -275,6 +277,7 @@ allow_k8s_contexts('lan-nonprod-dev0')
 - `${DEVELOPER_NAMESPACE}`: Developer namespace for deploying the application.
 - `${MICROSERVICE_NAME}`: Application or microservice's name.
 - `${APP_PORT}`: Application port.
+
 
 
 
