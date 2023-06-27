@@ -54,12 +54,19 @@ spec:
       value: qa0,disabledjobs
     #! Additional environment variables               #! TODO: OPTIONAL CHANGE
     #!- name: SERVER_PORT
-    #!  value: 8081
+    #!  value: "8081"
   source:
     git:
       url: ${GIT_REPO_URL}                            #! TODO: CHANGE
       ref:
-        branch: master
+        branch: ${GIT_REPO_BRANCH}                    #! TODO: CHANGE
+  #! If claiming AppSSO authentication
+  serviceClaims:
+    - name: my-client-claim
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: ${MY_CLIENT_CLAIM}
 ```
 
 ##### b. Frontend service (Angular):
@@ -80,8 +87,16 @@ spec:
         value: "build-tanzu"
       - name: BP_WEB_SERVER_ROOT
         value: "dist"
-      - name: BP_WEB_SERVER
-        value: "nginx"
+      - name: BP_WEB_SERVER_ENABLE_PUSH_STATE
+        value: "true"
+        #! Configures proxy for npmjs registry 
+      - name: NPM_CONFIG_REGISTRY                      
+        value: ${NEXUS_URL}/repository/npm-public/
+        #! Configures certificates for Node application 
+      - name: NODE_EXTRA_CA_CERTS
+        value: /etc/ssl/certs/ca-certificates.crt
+#      - name: BP_WEB_SERVER
+#        value: "nginx"
   env:
     #! Additional environment variables               #! TODO: OPTIONAL CHANGE
     #!- name: SERVER_PORT
@@ -91,6 +106,12 @@ spec:
       url: ${GIT_REPO_URL}                           #! TODO: CHANGE
       ref:
         branch: ${GIT_REPO_BRANCH}                   #! TODO: CHANGE
+  serviceClaims:
+    - name: my-client-claim
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: ${MY_CLIENT_CLAIM}
 ```
 
 ### 2. Change configuration
