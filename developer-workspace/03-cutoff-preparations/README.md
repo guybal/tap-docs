@@ -179,3 +179,13 @@ Here are a few examples:
 ### 2.4 TAP-GUI Visibility
 
 Verify TAP-GUI displays data from Production cluster.
+
+---
+
+### 2.5 Application Namespace
+
+##### 1.4.1 TAP Label on Application Namespaces
+
+Verify Application namespaces in all relevant clusters carry the `apps.tanzu.vmware.com/tap-ns` label.
+
+Can be labeled using `kubectl label namespace NAMESPACE_NAME apps.tanzu.vmware.com/tap-ns=""`.
