@@ -27,7 +27,7 @@ The purpose of this document is to map the required preparations for a successfu
 <!-- TOC -->
 
 ---
-## 1. Development workstream
+## 1. Development Work Stream
 
 First, verify development cycle is complete and functioning, allowing to build and deploy future versions of the Application.
 
