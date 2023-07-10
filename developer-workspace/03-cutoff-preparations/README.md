@@ -153,6 +153,14 @@ Verify AppSSO is configured for each cluster of the Iterate/Run clusters:
 
     Kind: `HTTPProxy`
 
+6. Name: `hive-workload-client-registration`
+
+   Kind: `ClientRegistration`
+
+7. Name: `hive-client-claim`
+
+   Kind: `ResourceClaim`
+
 ---
 
 ### 2.2 Deliverables 
