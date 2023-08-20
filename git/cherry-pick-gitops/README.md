@@ -5,20 +5,22 @@
   * [Use-Case: Promote a Single Service](#use-case--promote-a-single-service)
   * [Git Flow Diagram](#git-flow-diagram)
     * [a. Overview](#a-overview)
-        * [1. Create 'commit-branch' from 'target-branch'](#1-create--commit-branch-from--target-branch)
-        * [2. Cherry-pick promotion from 'source-branch' to 'commit-branch'](#2-cherry-pick-promotion-from--source-branch-to--commit-branch)
-        * [3. Open Pull/Merge Request from 'commit-branch' to 'target-branch'](#3-open-pullmerge-request-from--commit-branch-to--target-branch)
+      * [1. Create 'commit-branch' from 'target-branch'](#1-create--commit-branch-from--target-branch)
+      * [2. Cherry-pick promotion from 'source-branch' to 'commit-branch'](#2-cherry-pick-promotion-from--source-branch-to--commit-branch)
+      * [3. Open Pull/Merge Request from 'commit-branch' to 'target-branch'](#3-open-pullmerge-request-from--commit-branch-to--target-branch)
     * [b. Diagram](#b-diagram)
-    * [c. script](#c-script)
+    * [c. Script](#c-script)
+    * [d. Output](#d-output)
 * [Scenario 2: Revert](#scenario-2--revert)
   * [Use-Case: Revert a Single Service to Previous Version](#use-case--revert-a-single-service-to-previous-version)
   * [Git Flow Diagram](#git-flow-diagram)
     * [a. Overview](#a-overview)
-        * [1. Create 'commit-branch' from 'target-branch'](#1-create--commit-branch-from--target-branch)
-        * [2. Checkout desired manifest to desired commit in 'commit-branch'](#2-checkout-desired-manifest-to-desired-commit-in--commit-branch)
-        * [3. Open Pull/Merge Request from 'commit-branch' to 'target-branch'](#3-open-pullmerge-request-from--commit-branch-to--target-branch)
+      * [1. Create 'commit-branch' from 'target-branch'](#1-create--commit-branch-from--target-branch)
+      * [2. Checkout desired manifest to desired commit in 'commit-branch'](#2-checkout-desired-manifest-to-desired-commit-in--commit-branch)
+      * [3. Open Pull/Merge Request from 'commit-branch' to 'target-branch'](#3-open-pullmerge-request-from--commit-branch-to--target-branch)
     * [b. Diagram](#b-diagram)
-    * [c. script](#c-script)
+    * [c. Script](#c-script)
+    * [d. Output](#d-output)
 <!-- TOC -->
 
 # Scenario 1: Promotion
@@ -32,7 +34,7 @@ This use case deals with promotion of a single service from 'source-branch' to '
 
 ##### 1. Create 'commit-branch' from 'target-branch'
 
-Create a new branch ('commit-branch') from 'target-branch' to cherry-pick a candidate commit for promotion. 
+Create a new branch ('commit-branch') from 'target-branch' to cherry-pick a candidate commit for promotion.
 
 ##### 2. Cherry-pick promotion from 'source-branch' to 'commit-branch'
 
@@ -46,7 +48,7 @@ Automate Pull/Merge Request creation to allow manual reviewing of the code being
 
 ![promotion_diagram](images/promotion.png)
 
-### c. script
+### c. Script
 
 ```bash
 #!/usr/bin/env bash
@@ -91,6 +93,21 @@ jx-scm pull-request create \
 rm -rf ../../tmp-gitops
 ```
 
+### d. Output
+
+**GitLab**
+```bash
+created pull request #1 in repo 'guybalmas/tap-gitops'. url: https://gitlab.com/guybalmas/tap-gitops/-/merge_requests/1
+```
+![img.png](images/gitlab-automated-pr.png)
+
+![img.png](images/gitlab-automated-pr-2.png)
+
+![img.png](images/auto-pr-gitlab-hash-branch.png)
+
+![img.png](images/auto-pr-gitlab-hash-branch-2.png)
+
+
 
 # Scenario 2: Revert
 
@@ -118,7 +135,7 @@ Automate Pull/Merge Request creation to allow manual reviewing of the code being
 
 ![revert_diagram](images/revert.png)
 
-### c. script
+### c. Script
 
 ```bash
 #!/usr/bin/env bash
@@ -162,3 +179,28 @@ jx-scm pull-request create \
 rm -rf ../../tmp-gitops
 ```
 
+
+### d. Output
+
+**GitLab**
+```bash
+created pull request #11 in repo 'guybalmas/tap-gitops'. url: https://gitlab.com/guybalmas/tap-gitops/-/merge_requests/11
+```
+
+**GitLab**
+
+![img.png](images/img.png)
+
+![img_1.png](images/img_1.png)
+
+![img_2.png](images/img_2.png)
+
+![img_3.png](images/img_3.png)
+
+![img_4.png](images/img_4.png)
+
+![img_5.png](images/img_5.png)
+
+![img_6.png](images/img_6.png)
+
+![img_7.png](images/img_7.png)
