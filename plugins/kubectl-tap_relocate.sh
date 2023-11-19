@@ -200,7 +200,7 @@ fi
 
 # Check if --version option is provided
 if [ -z "$version" ]; then
-  echo "Version: $version"
+  echo "No version selected, will list available versions"
 else
   input_versions="$version"
 fi
