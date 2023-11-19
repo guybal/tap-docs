@@ -9,7 +9,6 @@ install_registry_username=""
 install_registry_password=""
 selected_package=""
 install_repo="tap"  # Default value for --install-repo flag
-version=""
 
 # Default choice values
 option_name="TAP Packages"
@@ -159,10 +158,6 @@ while [[ $# -gt 0 ]]; do
       install_repo=$2
       shift 2
       ;;
-    --version)
-      version=$2
-      shift 2
-      ;;
     *)
       echo "Invalid argument: $1"
       exit 1
@@ -198,13 +193,6 @@ if [ -z "$selected_package" ]; then
   choose_package
 fi
 
-# Check if --version option is provided
-if [ -z "$version" ]; then
-  echo "No version selected, will list available versions"
-else
-  input_versions="$version"
-fi
-
 # Login to VMware registry
 docker_login "registry.tanzu.vmware.com" "$vmware_registry_username" "$vmware_registry_password"
 
@@ -235,6 +223,8 @@ do
   fi
 done
 echo "$available_versions"
+
+read -p "Enter the version number(s) you want to relocate (separated by space): " input_versions
 
 # Iterate through input versions and relocate packages
 for current_version in $input_versions
