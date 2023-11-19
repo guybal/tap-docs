@@ -17,6 +17,6 @@ kubectl tap-relocate
 - `--install-registry-hostname` specifies your local private image registry hostname (fqdn).
 - `--install-registry-username` specifies the username for your local private image registry.
 - `--install-registry-password` specifies the password correspondent to the username for your local private image registry.
-- `--install-repo` specifies the sub path for copying packages in your local private image registry (dedfaults to `tap`).
+- `--install-repo` specifies the sub path for copying packages in your local private image registry (defaults to `tap`).
 - `--package` specifies the type of package to relocate (accepts `tap`, `tbs`, `scg`).
 - `--version` specifies the version of package for relocation. 
