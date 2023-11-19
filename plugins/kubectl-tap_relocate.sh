@@ -200,7 +200,7 @@ fi
 
 # Check if --version option is provided
 if [ -z "$version" ]; then
-  read -p "Enter the version number(s) you want to relocate (separated by space): " input_versions
+  echo "Version: $version"
 else
   input_versions="$version"
 fi
